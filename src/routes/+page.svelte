@@ -1,2 +1,23 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import * as Chat from '$lib/components/ui/chat';
+    import { Button, buttonVariants } from '$lib/components/ui/button';
+    import { Input } from '$lib/components/ui/input';
+    import { InfoIcon, PhoneIcon, SendIcon, SmilePlusIcon, VideoIcon } from '@lucide/svelte';
+	
+</script>
+
+
+	<form
+	class="flex gap-4 items-center"
+	>
+		<Input  class="rounded-full" placeholder="Type a message..." />
+		<Button
+			type="submit"
+			variant="default"
+			size="icon"
+			class="shrink-0 rounded-full"
+		
+		>
+			<SendIcon />
+		</Button>
+	</form>
