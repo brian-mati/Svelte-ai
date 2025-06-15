@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as Chat from '$lib/components/ui/chat';
-    import { Button, buttonVariants } from '$lib/components/ui/button';
+	
+    import { Button } from '$lib/components/ui/button';
     import { Input } from '$lib/components/ui/input';
-    import { InfoIcon, PhoneIcon, SendIcon, SmilePlusIcon, VideoIcon } from '@lucide/svelte';
+    import { SendIcon } from '@lucide/svelte';
 	
 </script>
 

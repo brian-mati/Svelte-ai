@@ -5,7 +5,7 @@ if (!env.MISTRAL_API_KEY) {
 	throw new ReferenceError('Key is undefined');
 }
 
-export const chatFunction = async (question: string) => {
+export const chatClient = async (question: string) => {
 	try {
 		const client = new Mistral({ apiKey: env.MISTRAL_API_KEY });
 
