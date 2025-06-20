@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1750327324993,
+      "tag": "0000_ambiguous_skin",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1750414085572,
+      "tag": "0001_many_proemial_gods",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1750420109810,
+      "tag": "0002_free_mach_iv",
+      "breakpoints": true
+    }
+  ]
+}
