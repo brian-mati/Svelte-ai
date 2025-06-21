@@ -10,27 +10,38 @@ export const actions = {
 		console.info(question);
 
 		const model = await chatClient(question);
+		if (!model || !model.choices || !model.choices[0] || !model.usage) {
+			return { success: false, error: 'Failed to get AI response' };
+		}
 		console.info({ 'resp-obj': model });
 		// console.info({ 'resp-obj': model }, { 'chat-resp': answer.choices[0].message });
-		const message = String(model?.choices[0].message.content);
 		const answer = String(model?.choices[0].message.content);
 		const returned_prompt_tokens = Number(model?.usage.promptTokens);
 		const returned_completion_tokens = Number(model?.usage.completionTokens);
+		if (isNaN(returned_completion_tokens) || isNaN(returned_prompt_tokens)) {
+			console.warn('There was a type error');
+			return { success: false };
+		}
 		const chat: Conversation = {
 			question,
 			response: answer,
 			prompt_tokens: returned_prompt_tokens,
 			completion_tokens: returned_completion_tokens
 		};
-		console.info({ message: message });
-		if (message == undefined) {
+		console.info({ message: answer });
+		if (!answer) {
 			return { success: false };
 		} else {
 			const insertNewConversation = async (newConversation: Conversation) => {
-				return db
-					.insert(conversation)
-					.values(newConversation)
-					.returning({ insertedId: conversation.id });
+				try {
+					return db
+						.insert(conversation)
+						.values(newConversation)
+						.returning({ insertedId: conversation.id });
+				} catch (error) {
+					console.error('database insertion failed', error);
+					throw error;
+				}
 			};
 			console.info(await insertNewConversation(chat));
 
