@@ -12,15 +12,8 @@
     {
       "idx": 1,
       "version": "7",
-      "when": 1750414085572,
-      "tag": "0001_many_proemial_gods",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1750420109810,
-      "tag": "0002_free_mach_iv",
+      "when": 1750599008484,
+      "tag": "0001_wide_nomad",
       "breakpoints": true
     }
   ]

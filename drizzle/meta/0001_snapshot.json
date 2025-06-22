@@ -1,9 +1,41 @@
 {
-  "id": "d542fb05-d02a-4c2a-916d-70291cf78b18",
+  "id": "e95473e5-689b-401e-99cb-2d165232e8da",
   "prevId": "ac55c6b7-0661-4e9f-b089-c08fd3254bb6",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.chat": {
+      "name": "chat",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.conversation": {
       "name": "conversation",
       "schema": "",
@@ -14,6 +46,12 @@
           "primaryKey": true,
           "notNull": true
         },
+        "chat_id": {
+          "name": "chat_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
         "question": {
           "name": "question",
           "type": "varchar",
@@ -22,7 +60,7 @@
         },
         "response": {
           "name": "response",
-          "type": "varchar",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
@@ -47,7 +85,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "conversation_chat_id_chat_id_fk": {
+          "name": "conversation_chat_id_chat_id_fk",
+          "tableFrom": "conversation",
+          "tableTo": "chat",
+          "columnsFrom": [
+            "chat_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},

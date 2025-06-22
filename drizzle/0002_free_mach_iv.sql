@@ -1,1 +1,0 @@
-ALTER TABLE "conversation" ALTER COLUMN "response" SET DATA TYPE text;
