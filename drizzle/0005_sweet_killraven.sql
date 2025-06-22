@@ -1,0 +1,1 @@
+ALTER TABLE "conversation" ALTER COLUMN "chat_id" SET DEFAULT 0;

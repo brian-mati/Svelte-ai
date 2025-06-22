@@ -1,6 +1,6 @@
 import { MISTRAL_API_KEY } from '$env/static/private';
 import { Mistral } from '@mistralai/mistralai';
-import { HTTPValidationError, SDKValidationError } from '@mistralai/mistralai/models/errors';
+import { ConnectionError, HTTPValidationError, SDKValidationError } from '@mistralai/mistralai/models/errors';
 
 const apiKey = MISTRAL_API_KEY;
 if (!apiKey) {
@@ -37,6 +37,14 @@ export async function chatClient(request: string) {
 					}
 				);
 
+				return;
+			}
+
+			case error instanceof ConnectionError:{
+				console.error(
+					{'error-data':error.cause},
+
+				);
 				return;
 			}
 
